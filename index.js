@@ -1,18 +1,29 @@
-function isPalindrome(s) {
-  //Santize the input string
-  s = s.toLowerCase().replace(/[\W_]/g, "");
+//Given a string s, find the longest palindromic substring in s
+// --- Example
+// longestPalindrome("cbbd") --> "bb"
+// longestPalindrome("abba") --> "abba"
+// longestPalindrome("a") --> "a"
 
-  let left = 0;
-  let right = s.length - 1;
+function longestPalindrome(s) {
+  let startIndex = 0;
+  let maxLength = 1;
 
-  while (left < right) {
-    if (s[left] !== s[right]) {
-      return false;
+  function expandAroundMiddle(left, right) {
+    while (left >= 0 && right < s.length && s[left] === s[right]) {
+      const currenPalLength = right - left + 1;
+      if (currenPalLength > maxLength) {
+        maxLength = currenPalLength;
+        startIndex = left;
+      }
+      left -= 1;
+      right += 1;
     }
-    left++;
-    right--;
   }
-  return true;
+  for (let i = 0; i < s.length; i++) {
+    expandAroundMiddle(i - 1, i + 1);
+    expandAroundMiddle(i, i + 1);
+  }
+  return s.slice(startIndex, startIndex + maxLength);
 }
 
-module.exports = isPalindrome;
+module.exports = longestPalindrome;
