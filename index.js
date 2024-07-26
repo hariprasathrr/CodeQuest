@@ -1,29 +1,25 @@
-//Given a string s, find the longest palindromic substring in s
+// Given a string, return the length of the longest substring without
+// repeating characters.
 // --- Example
-// longestPalindrome("cbbd") --> "bb"
-// longestPalindrome("abba") --> "abba"
-// longestPalindrome("a") --> "a"
+// lengthOfLongestSubstring("abcabcbb") --> 3 since length of "abc"
+// lengthOfLongestSubstring("bbbbb") --> 1 since length of "b"
 
-function longestPalindrome(s) {
-  let startIndex = 0;
-  let maxLength = 1;
+function lengthOfLongestSubstring(s) {
+  let windowCharsMap = {};
+  let windowStart = 0;
+  let maxLength = 0;
 
-  function expandAroundMiddle(left, right) {
-    while (left >= 0 && right < s.length && s[left] === s[right]) {
-      const currenPalLength = right - left + 1;
-      if (currenPalLength > maxLength) {
-        maxLength = currenPalLength;
-        startIndex = left;
-      }
-      left -= 1;
-      right += 1;
-    }
-  }
   for (let i = 0; i < s.length; i++) {
-    expandAroundMiddle(i - 1, i + 1);
-    expandAroundMiddle(i, i + 1);
+    const endChar = s[i];
+
+    if (windowCharsMap[endChar] >= windowStart) {
+      windowStart = windowCharsMap[endChar] + 1;
+    }
+
+    windowCharsMap[endChar] = i;
+    maxLength = Math.max(maxLength, i - windowStart + 1);
   }
-  return s.slice(startIndex, startIndex + maxLength);
+  return maxLength;
 }
 
-module.exports = longestPalindrome;
+module.exports = lengthOfLongestSubstring;

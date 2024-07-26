@@ -1,17 +1,17 @@
-const longestPalindrome = require("./index");
+const lengthOfLongestSubstring = require("./index");
 
-test("'cbbd' returns 'bb'", () => {
-  expect(longestPalindrome("cbbd")).toEqual("bb");
+test("'abcabcbb' returns 3", () => {
+  expect(lengthOfLongestSubstring("abcabcbb")).toEqual(3);
 });
 
-test("'abba' returns 'abba'", () => {
-  expect(longestPalindrome("abba")).toEqual("abba");
+test("'pwwkew' returns 3", () => {
+  expect(lengthOfLongestSubstring("pwwkew")).toEqual(3);
 });
 
-test("'abacdfgdcaba' returns 'aba'", () => {
-  expect(longestPalindrome("abacdfgdcaba")).toEqual("aba");
+test("'dvdf' returns 3", () => {
+  expect(lengthOfLongestSubstring("dvdf")).toEqual(3);
 });
 
-test("'a' returns 'a'", () => {
-  expect(longestPalindrome("a")).toEqual("a");
+test("'bbb' returns 1", () => {
+  expect(lengthOfLongestSubstring("bbb")).toEqual(1);
 });
