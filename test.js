@@ -1,17 +1,13 @@
-const lengthOfLongestSubstring = require("./index");
+const isAnagram = require("./index");
 
-test("'abcabcbb' returns 3", () => {
-  expect(lengthOfLongestSubstring("abcabcbb")).toEqual(3);
+test("isAnagram('anagram', 'nagaram') returns true", () => {
+  expect(isAnagram("anagram", "nagaram")).toEqual(true);
 });
 
-test("'pwwkew' returns 3", () => {
-  expect(lengthOfLongestSubstring("pwwkew")).toEqual(3);
+test("isAnagram('rat', 'car') returns false", () => {
+  expect(isAnagram("rat", "car")).toEqual(false);
 });
 
-test("'dvdf' returns 3", () => {
-  expect(lengthOfLongestSubstring("dvdf")).toEqual(3);
-});
-
-test("'bbb' returns 1", () => {
-  expect(lengthOfLongestSubstring("bbb")).toEqual(1);
+test("isAnagram('', '') returns true", () => {
+  expect(isAnagram("", "")).toEqual(true);
 });
