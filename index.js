@@ -1,25 +1,27 @@
-// Given a string, return the length of the longest substring without
-// repeating characters.
-// --- Example
-// lengthOfLongestSubstring("abcabcbb") --> 3 since length of "abc"
-// lengthOfLongestSubstring("bbbbb") --> 1 since length of "b"
-
-function lengthOfLongestSubstring(s) {
-  let windowCharsMap = {};
-  let windowStart = 0;
-  let maxLength = 0;
-
-  for (let i = 0; i < s.length; i++) {
-    const endChar = s[i];
-
-    if (windowCharsMap[endChar] >= windowStart) {
-      windowStart = windowCharsMap[endChar] + 1;
-    }
-
-    windowCharsMap[endChar] = i;
-    maxLength = Math.max(maxLength, i - windowStart + 1);
+function isAnagram(s, t) {
+  if (s.length !== t.length) {
+    return false;
   }
-  return maxLength;
+
+  const sCharCounts = {}; //{H:1,E:1,L:2,O:1}
+
+  //Fill sCharCounts
+  for (let i = 0; i < s.length; i++) {
+    const sChar = s[i];
+    sCharCounts[sChar] = sCharCounts[sChar] + 1 || 1;
+  }
+
+  for (let i = 0; i < t.length; i++) {
+    const tChar = t[i];
+
+    if (!sCharCounts[tChar]) {
+      return false;
+    } else {
+      sCharCounts[tChar]--;
+    }
+  }
+
+  return true;
 }
 
-module.exports = lengthOfLongestSubstring;
+module.exports = isAnagram;
