@@ -1,13 +1,18 @@
-const isAnagram = require("./index");
+const groupAnagrams = require("./index");
 
-test("isAnagram('anagram', 'nagaram') returns true", () => {
-  expect(isAnagram("anagram", "nagaram")).toEqual(true);
-});
+test("['eat', 'tea', 'tan', 'ate', 'nat', 'bat'] returns 3 groups of Anagrams", () => {
+  let res = groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]).sort(
+    (a, b) => b.length - a.length
+  );
 
-test("isAnagram('rat', 'car') returns false", () => {
-  expect(isAnagram("rat", "car")).toEqual(false);
-});
+  res.forEach(subArr => subArr.sort());
 
-test("isAnagram('', '') returns true", () => {
-  expect(isAnagram("", "")).toEqual(true);
+  expect(res.length).toEqual(3);
+
+  const subArr1 = res[0];
+  expect(subArr1).toEqual(["ate", "eat", "tea"]);
+  const subArr2 = res[1];
+  expect(subArr2).toEqual(["nat", "tan"]);
+  const subArr3 = res[2];
+  expect(subArr3).toEqual(["bat"]);
 });
