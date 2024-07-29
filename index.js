@@ -1,15 +1,16 @@
-function groupAnagrams(strs) {
-  let grouped = {};
+const isValid = (s) => {
+  let stack = [];
+  let pairHashMap = { "(": ")", "{": "}", "[": "]" };
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i];
 
-  for (let i = 0; i < strs.length; i++) {
-    const word = strs[i];
-    const key = word.split("").sort().join("");
-    if (!grouped[key]) {
-      grouped[key] = [];
+    if (pairHashMap[char]) {
+      stack.push(char);
+    } else if (pairHashMap[stack.pop()] !== char) {
+      return false;
     }
-    grouped[key].push(word);
   }
-  return Object.values(grouped);
-}
+  return stack.length === 0;
+};
 
-module.exports = groupAnagrams;
+module.exports = isValid;
