@@ -1,16 +1,12 @@
-const isValid = (s) => {
-  let stack = [];
-  let pairHashMap = { "(": ")", "{": "}", "[": "]" };
-  for (let i = 0; i < s.length; i++) {
-    let char = s[i];
+const climbStairs = (n) => {
+  if (n <= 3) return n;
 
-    if (pairHashMap[char]) {
-      stack.push(char);
-    } else if (pairHashMap[stack.pop()] !== char) {
-      return false;
-    }
+  let ways = [0, 1, 2, 3];
+
+  for (let i = 4; i <= n; i++) {
+    ways.push(ways[i - 1] + ways[i - 2]);
   }
-  return stack.length === 0;
+  return ways[n];
 };
 
-module.exports = isValid;
+module.exports = climbStairs;
