@@ -1,21 +1,17 @@
-const isValid = require("./index");
+const climbStairs = require("./index");
 
-test("'(', ')', '{', '}', '[', ']' should return false", () => {
-  expect(isValid("(")).toEqual(false);
-  expect(isValid(")")).toEqual(false);
-  expect(isValid("{")).toEqual(false);
-  expect(isValid("}")).toEqual(false);
-  expect(isValid("[")).toEqual(false);
-  expect(isValid("]")).toEqual(false);
+test("Returns 1 way to climb 1 stair", () => {
+  expect(climbStairs(1)).toEqual(1);
 });
 
-test("'(]', '([)]' should return false", () => {
-  expect(isValid("(]")).toEqual(false);
-  expect(isValid("([)]")).toEqual(false);
+test("Returns 2 ways to climb 2 stairs", () => {
+  expect(climbStairs(2)).toEqual(2);
 });
 
-test("'()', '()[]{}', '{[]}' should return true", () => {
-  expect(isValid("()")).toEqual(true);
-  expect(isValid("()[]{}")).toEqual(true);
-  expect(isValid("{[]}")).toEqual(true);
+test("Returns 3 ways to climb 3 stairs", () => {
+  expect(climbStairs(3)).toEqual(3);
+});
+
+test("Returns 5 ways to climb 4 stairs", () => {
+  expect(climbStairs(4)).toEqual(5);
 });
