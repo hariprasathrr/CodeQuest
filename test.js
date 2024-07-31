@@ -1,17 +1,13 @@
-const climbStairs = require("./index");
+const rob = require("./index");
 
-test("Returns 1 way to climb 1 stair", () => {
-  expect(climbStairs(1)).toEqual(1);
+test("rob([1,2,3,1]) returns 4", () => {
+  expect(rob([1, 2, 3, 1])).toEqual(4);
 });
 
-test("Returns 2 ways to climb 2 stairs", () => {
-  expect(climbStairs(2)).toEqual(2);
+test("rob([2,1,1,2]) returns 4", () => {
+  expect(rob([2, 1, 1, 2])).toEqual(4);
 });
 
-test("Returns 3 ways to climb 3 stairs", () => {
-  expect(climbStairs(3)).toEqual(3);
-});
-
-test("Returns 5 ways to climb 4 stairs", () => {
-  expect(climbStairs(4)).toEqual(5);
+test("rob([]) returns 0", () => {
+  expect(rob([])).toEqual(0);
 });
