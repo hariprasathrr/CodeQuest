@@ -1,16 +1,16 @@
-function rob(nums) {
-  if (nums.length === 0) return 0;
-  if (nums.length === 1) return nums[0];
-  if (nums.length === 2) return Math.max(nums[0], nums[1]);
+function canJump(nums) {
+  let dpPositions = new Array(nums.length).fill(false);
+  dpPositions[0] = true;
 
-  let maxLootAtNth = [nums[0], Math.max(nums[0], nums[1])];
-
-  for (let i = 2; i < nums.length; i++) {
-    maxLootAtNth.push(
-      Math.max(nums[i] + maxLootAtNth[i - 2], maxLootAtNth[i - 1])
-    );
+  for (let j = 1; j < nums.length; j++) {
+    for (let i = 0; i < j; i++) {
+      if (dpPositions[i] && i + nums[i] >= j) {
+        dpPositions[j] = true;
+        break;
+      }
+    }
   }
-  return maxLootAtNth.pop();
+  return dpPositions[dpPositions.length - 1];
 }
 
-module.exports = rob;
+module.exports = canJump;
