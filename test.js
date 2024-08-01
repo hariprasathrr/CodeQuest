@@ -1,13 +1,13 @@
-const rob = require("./index");
+const canJump = require("./index");
 
-test("rob([1,2,3,1]) returns 4", () => {
-  expect(rob([1, 2, 3, 1])).toEqual(4);
+test("[2, 3, 1, 1, 4] returns true", () => {
+  expect(canJump([2, 3, 1, 1, 4])).toEqual(true);
 });
 
-test("rob([2,1,1,2]) returns 4", () => {
-  expect(rob([2, 1, 1, 2])).toEqual(4);
+test("[3] returns true", () => {
+  expect(canJump([3])).toEqual(true);
 });
 
-test("rob([]) returns 0", () => {
-  expect(rob([])).toEqual(0);
+test("[3,2,1,0,4] returns false", () => {
+  expect(canJump([3, 2, 1, 0, 4])).toEqual(false);
 });
