@@ -1,18 +1,17 @@
-function lengthOfLIS(nums) {
-  if (nums.length === 0) return 0;
+function coinChange(coins, amount) {
+  let dpMinCoins = new Array(amount + 1).fill(Infinity);
+  dpMinCoins[0] = 0;
 
-  let dpSubsequence = new Array(nums.length).fill(1);
-  let maxSoFar = 1;
-
-  for (let j = 1; j < nums.length; j++) {
-    for (let i = 0; i < j; i++) {
-      if (nums[j] > nums[i]) {
-        dpSubsequence[j] = Math.max(dpSubsequence[i] + 1, dpSubsequence[j]);
+  for (let i = 1; i < dpMinCoins.length; i++) {
+    for (j = 0; j < coins.length; j++) {
+      const coinValue = coins[j];
+      if (coinValue <= i) {
+        dpMinCoins[i] = Math.min(dpMinCoins[i - coinValue] + 1, dpMinCoins[i]);
       }
     }
-    maxSoFar = Math.max(maxSoFar, dpSubsequence[j]);
   }
-  return maxSoFar;
+  const answer = dpMinCoins[dpMinCoins.length - 1];
+  return answer === Infinity ? -1 : answer;
 }
 
-module.exports = lengthOfLIS;
+module.exports = coinChange;
