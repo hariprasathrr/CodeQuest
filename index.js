@@ -1,16 +1,18 @@
-function canJump(nums) {
-  let dpPositions = new Array(nums.length).fill(false);
-  dpPositions[0] = true;
+function lengthOfLIS(nums) {
+  if (nums.length === 0) return 0;
+
+  let dpSubsequence = new Array(nums.length).fill(1);
+  let maxSoFar = 1;
 
   for (let j = 1; j < nums.length; j++) {
     for (let i = 0; i < j; i++) {
-      if (dpPositions[i] && i + nums[i] >= j) {
-        dpPositions[j] = true;
-        break;
+      if (nums[j] > nums[i]) {
+        dpSubsequence[j] = Math.max(dpSubsequence[i] + 1, dpSubsequence[j]);
       }
     }
+    maxSoFar = Math.max(maxSoFar, dpSubsequence[j]);
   }
-  return dpPositions[dpPositions.length - 1];
+  return maxSoFar;
 }
 
-module.exports = canJump;
+module.exports = lengthOfLIS;
