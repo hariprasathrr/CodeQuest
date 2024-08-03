@@ -1,13 +1,13 @@
-const canJump = require("./index");
+const uniquePaths = require("./index");
 
-test("[2, 3, 1, 1, 4] returns true", () => {
-  expect(canJump([2, 3, 1, 1, 4])).toEqual(true);
+test("uniquePaths(1, 1) --> 1", () => {
+  expect(uniquePaths(1, 1)).toEqual(1);
 });
 
-test("[3] returns true", () => {
-  expect(canJump([3])).toEqual(true);
+test("uniquePaths(7, 3) --> 28", () => {
+  expect(uniquePaths(7, 3)).toEqual(28);
 });
 
-test("[3,2,1,0,4] returns false", () => {
-  expect(canJump([3, 2, 1, 0, 4])).toEqual(false);
+test("uniquePaths(6, 3) --> 21", () => {
+  expect(uniquePaths(6, 3)).toEqual(21);
 });
