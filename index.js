@@ -1,25 +1,17 @@
-function uniquePaths(m, n) {
-  const dpMatrix = [];
+const containsDuplicate = (nums) => {
+  const visitedNums = {}; // {7: true, 2: true}
 
-  for (let row = 1; row <= n; row++) {
-    dpMatrix.push([]);
-  }
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
 
-  //fill out first row of dp matrix
-  for (let row = 0; row < n; row++) {
-    dpMatrix[row][0] = 1;
-  }
-  //fill out first col of dp matrix
-  for (let col = 0; col < m; col++) {
-    dpMatrix[0][col] = 1;
-  }
-
-  for (let row = 1; row < n; row++) {
-    for (let col = 1; col < m; col++) {
-      dpMatrix[row][col] = dpMatrix[row][col - 1] + dpMatrix[row - 1][col];
+    if (visitedNums[num]) {
+      return true;
+    } else {
+      visitedNums[num] = true;
     }
   }
-  return dpMatrix[dpMatrix.length - 1][m - 1];
-}
 
-module.exports = uniquePaths;
+  return false;
+};
+
+module.exports = containsDuplicate;
