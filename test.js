@@ -1,13 +1,10 @@
-const uniquePaths = require("./index");
+const containsDuplicate = require("./index");
 
-test("uniquePaths(1, 1) --> 1", () => {
-  expect(uniquePaths(1, 1)).toEqual(1);
+test("returns true for Arrays with duplicate values", () => {
+  expect(containsDuplicate([1, 2, 3, 1])).toEqual(true);
+  expect(containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2])).toEqual(true);
 });
 
-test("uniquePaths(7, 3) --> 28", () => {
-  expect(uniquePaths(7, 3)).toEqual(28);
-});
-
-test("uniquePaths(6, 3) --> 21", () => {
-  expect(uniquePaths(6, 3)).toEqual(21);
+test("returns false for Arrays with NO duplicate values", () => {
+  expect(containsDuplicate([1, 2, 3, 4])).toEqual(false);
 });
