@@ -1,18 +1,22 @@
-function maxArea(height) {
-  let maxArea = 0;
-  let start = 0;
-  let end = height.length - 1;
+const productExceptSelf = (nums) => {
+  let output = nums.map((n) => 1);
+  let product = 1;
 
-  while (start < end) {
-    const currentArea = Math.min(height[start], height[end]) * (end - start);
-    maxArea = Math.max(currentArea, maxArea);
-    if (height[start] < height[end]) {
-      start++;
-    } else {
-      end--;
-    }
+  //Multiply from the left
+  for (let i = 0; i < nums.length; i++) {
+    output[i] = output[i] * product;
+    product = product * nums[i];
   }
-  return maxArea;
-}
 
-module.exports = maxArea;
+  product = 1;
+  //Multiply from the right
+
+  for (let j = nums.length - 1; j >= 0; j--) {
+    output[j] = output[j] * product;
+    product = product * nums[j];
+  }
+
+  return output;
+};
+
+module.exports = productExceptSelf;
